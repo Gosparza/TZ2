@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn test -Dtest=./TZ2/src/test/java/org/example
+      run: mvn test -Dtest=/TZ2/src/test/java/org/example
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
