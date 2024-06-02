@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class MainTest{
 
     @Tag("WORK")
-
+    //Класс тестов проверки корректности работы вычисляющих функций
     @Nested
     class CorrectWorkTests{
 
         ArrayList<BigInteger> v;
-
+        //Начальная инициализация массива для всех тестов класса
         @BeforeEach
         void makeStartList(){
             v = new ArrayList<>();
@@ -26,6 +26,7 @@ public class MainTest{
             v.add(new BigInteger("4"));
         }
 
+        //Проверка работы функции нахождения минимума
         @Tag("MIN")
         @Test
         void testMinWork(){
@@ -41,6 +42,7 @@ public class MainTest{
             System.out.println("min is correct");
         }
 
+        //Проверка работы функции нахождения максимума
         @Tag("MAX")
         @Test
         void testMaxWork(){
@@ -56,6 +58,7 @@ public class MainTest{
             System.out.println("max is correct");
         }
 
+        //Проверка работы функции нахождения суммы
         @Tag("SUM")
         @Test
         void testSumWork(){
@@ -71,6 +74,7 @@ public class MainTest{
             System.out.println("sum is correct");
         }
 
+        //Проверка работы функции нахождения произведения
         @Tag("MULT")
         @Test
         void testMultWork(){
@@ -91,22 +95,25 @@ public class MainTest{
 
 
     @Tag("TIME") // Это часть не совсем тесты, но их было удобно представить как тесты
-
+    //Класс замера времени работы вычисляющих функций
     @Nested
     class TimeWorkTests{
 
+        //Объявление общих для функций замера переменных
         ArrayList<BigInteger> v;
         BigInteger k;
         long t1;
         long t2;
         int i;
 
+        //Начальная инициализация переменных для функций класса
         @BeforeEach
         void makeStartValues(){
             v = new ArrayList<>();
             i = 1;
         }
 
+        //Замер времени работы функции нахождения минимума
         @Tag("MIN_TIME")
         @Test
         void testMinTime() {
@@ -125,6 +132,7 @@ public class MainTest{
             }
         }
 
+        //Замер времени работы функции нахождения максимума
         @Tag("MAX_TIME")
         @Test
         void testMaxTime() {
@@ -143,6 +151,7 @@ public class MainTest{
             }
         }
 
+        //Замер времени работы функции нахождения суммы
         @Tag("SUM_TIME")
         @Test
         void testSumTime() {
@@ -161,6 +170,7 @@ public class MainTest{
             }
         }
 
+        //Замер времени работы функции нахождения произведения
         @Tag("MULT_TIME")
         @Test
         void testMultTime() {
@@ -195,12 +205,15 @@ public class MainTest{
     }
 
     @Tag("ADD")
-
+    //Дополнительные тетсты
     @Nested
+    //Класс дополнительных тестов
     class AddTests{
 
+        //Объявление массива
         ArrayList<BigInteger> v;
 
+        //Тест на выброс исключения при отсутствии файла
         @Tag("EXC")
         @Test
         void testException(){
@@ -211,6 +224,7 @@ public class MainTest{
             System.out.println("It trows exception. That is good.");
         }
 
+        //Тест на ограничение времени выполнения
         @Tag("TL")
         @Test
         void testTimeLim() throws Exception{
@@ -225,28 +239,29 @@ public class MainTest{
             System.out.println("It work in normal time.");
         }
 
-        //Следующий метод использовался для создания графика, но закомментирован за ненадобностью в основных тестах
-//        @Tag("GRAPH")
-//        @Test
-//        void testgraph(){
-//            v = new ArrayList<>();
-//            v.add(new BigInteger("1"));
-//            BigInteger k;
-//            long t1;
-//            long t2;
+        //Следующий метод использовался для создания графика, но отключен за ненадобностью в основных тестах
+        @Disabled
+        @Tag("GRAPH")
+        @Test
+        void testgraph(){
+            v = new ArrayList<>();
+            v.add(new BigInteger("1"));
+            BigInteger k;
+            long t1;
+            long t2;
 
-//            for(int i = 0; i <= 1000000; i+=10000){
-//                while(v.size() <= i){
-//                    v.add(BigInteger.valueOf(i + 1));
-//                }
+            for(int i = 0; i <= 1000000; i+=10000){
+                while(v.size() <= i){
+                    v.add(BigInteger.valueOf(i + 1));
+                }
 
-//                t1 = System.nanoTime();
-//                k = Main.min(v);
-//                t2 = System.nanoTime();
+                t1 = System.nanoTime();
+                k = Main.min(v);
+                t2 = System.nanoTime();
 
-//                System.out.println(i);
-//                System.out.println(t2 - t1);
-//            }
-//        }
+                System.out.println(i);
+                System.out.println(t2 - t1);
+            }
+        }
     }
 }

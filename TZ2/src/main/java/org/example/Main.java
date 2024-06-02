@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Main
 {
+    //Функция вывода результатов операций с числами из введенного файла
     public static void main( String[] args ) throws Exception
     {
         System.out.println("Укажите путь до файла: ");
@@ -21,6 +22,7 @@ public class Main
         System.out.println("mult: " + Main.mult(vect));
     }
 
+    //Функция чтения чисел из файла и запись их в массив
     static ArrayList<BigInteger> read_file(String path) throws Exception{
         BufferedReader f_scan = new BufferedReader(new FileReader(path));
         int i = f_scan.read();
@@ -45,6 +47,7 @@ public class Main
         return vect;
 }
 
+    //Нахождение минимума массива
     static BigInteger min(ArrayList<BigInteger> vect){
         BigInteger m = BigInteger.ZERO;
         int k = 0;
@@ -58,6 +61,7 @@ public class Main
         return m;
     }
 
+    //Нахождение максимума массива
     static BigInteger max(ArrayList<BigInteger> vect){
         BigInteger m = BigInteger.ZERO;
         int k = 0;
@@ -71,6 +75,7 @@ public class Main
         return m;
     }
 
+    //Нахождение суммы чисел массива
     static BigInteger sum(ArrayList<BigInteger> vect){
         BigInteger s = BigInteger.ZERO;
         for(BigInteger i: vect) {
@@ -79,7 +84,7 @@ public class Main
         return s;
     }
 
-
+    //Нахождение произведения чисел массива
     static BigInteger mult(ArrayList<BigInteger> vect){
         BigInteger s = BigInteger.ONE;
         for(BigInteger i: vect) {
