@@ -25,27 +25,17 @@ public class Main
     //Функция чтения чисел из файла и запись их в массив
     static ArrayList<BigInteger> read_file(String path) throws Exception{
         BufferedReader f_scan = new BufferedReader(new FileReader(path));
-        int i = f_scan.read();
+        String i = f_scan.readLine();
         ArrayList<BigInteger> vect = new ArrayList<>();
         String s = "";
-        while (i != -1) {
-            char c = (char) i;
-            if(Character.isDigit(c) || c == '-') {
-                s = s + c;
-            }else{
-                vect.add(new BigInteger(s));
-                s = "";
-            }
-            i = f_scan.read();
-        }
-        if(s != ""){
-            vect.add(new BigInteger(s));
-            s = "";
-        }
 
+        for(String j : i.split(" ")){
+            vect.add(new BigInteger(j));
+        }
+        
         f_scan.close();
         return vect;
-}
+    }
 
     //Нахождение минимума массива
     static BigInteger min(ArrayList<BigInteger> vect){
