@@ -30,7 +30,7 @@ public class Main
         String s = "";
         while (i != -1) {
             char c = (char) i;
-            if(Character.isDigit(c)) {
+            if(Character.isDigit(c) c == '-') {
                 s = s + c;
             }else{
                 vect.add(new BigInteger(s));
