@@ -30,7 +30,7 @@ public class Main
         String s = "";
         while (i != -1) {
             char c = (char) i;
-            if(Character.isDigit(c) c == '-') {
+            if(Character.isDigit(c) || c == '-') {
                 s = s + c;
             }else{
                 vect.add(new BigInteger(s));
@@ -49,28 +49,22 @@ public class Main
 
     //Нахождение минимума массива
     static BigInteger min(ArrayList<BigInteger> vect){
-        BigInteger m = BigInteger.ZERO;
-        int k = 0;
+        BigInteger m = vect.get(0);
         for(BigInteger i: vect){
-            if(k == 0){
+            if(i.compareTo(m) == -1){
                 m = i;
-                k = 1;
             }
-            m = m.min(i);
         }
         return m;
     }
 
     //Нахождение максимума массива
     static BigInteger max(ArrayList<BigInteger> vect){
-        BigInteger m = BigInteger.ZERO;
-        int k = 0;
+        BigInteger m = vect.get(0);
         for(BigInteger i: vect){
-            if(k == 0){
+            if(i.compareTo(m) == 1){
                 m = i;
-                k = 1;
             }
-            m = m.max(i);
         }
         return m;
     }
@@ -91,5 +85,105 @@ public class Main
             s = s.multiply(i);
         }
         return s;
+    }
+
+    static void timeMeasurement(){
+        ArrayList<BigInteger> v = new ArrayList<>();
+        BigInteger k;
+        long t1;
+        long t2;
+        int i = 1;
+        while(i <= 1000000) {
+            while (v.size() <= i) {
+                v.add(BigInteger.valueOf(i));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.min(v);
+            t2 = System.nanoTime();
+
+            System.out.println("Time of min with " + i + " objects: " + (t2 - t1) + "ns");
+
+            i *= 10;
+        }
+        v = new ArrayList<>();
+        i = 1;
+        while(i <= 1000000){
+            while(v.size() <= i){
+                v.add(BigInteger.valueOf(i));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.max(v);
+            t2 = System.nanoTime();
+
+            System.out.println("Time of max with " + i + " objects: " + (t2 - t1) + "ns");
+
+            i *= 10;
+        }
+        v = new ArrayList<>();
+        i = 1;
+        while(i <= 1000000){
+            while(v.size() <= i){
+                v.add(BigInteger.valueOf(i));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.sum(v);
+            t2 = System.nanoTime();
+
+            System.out.println("Time of sum with " + i + " objects: " + (t2 - t1) + "ns");
+
+            i *= 10;
+        }
+        v = new ArrayList<>();
+        i = 1;
+        while(i <= 1000000){
+            while(v.size() <= i){
+                v.add(BigInteger.valueOf(i % 10));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.mult(v);
+            t2 = System.nanoTime();
+
+            System.out.println("Time of mult with " + i + " objects (mod 10) : " + (t2 - t1) + "ns");
+
+            i *= 10;
+        }
+
+        // Следующая часть кода работает долговато в силу большого количества вычислений))
+        for(i = 1; i < 5; i++){
+            for(int j = 0; j < 1000000; j++){
+                v.set(j, BigInteger.valueOf(i % (10 + i)));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.mult(v);
+            t2 = System.nanoTime();
+
+            System.out.println("Time of mult with " + 1000000 + " objects (mod " + (10 + i) + ") : " + (t2 - t1) + "ns");
+        }
+    }
+
+    static void graph(){
+        ArrayList<BigInteger> v = new ArrayList<>();
+        v.add(new BigInteger("1"));
+        BigInteger k;
+        long t1;
+        long t2;
+
+        for(int i = 0; i <= 1000000; i+=10000){
+            while(v.size() <= i){
+                v.add(BigInteger.valueOf(i + 1));
+            }
+
+            t1 = System.nanoTime();
+            k = Main.min(v);
+            t2 = System.nanoTime();
+
+            System.out.println(i);
+            System.out.println(t2 - t1);
+        }
     }
 }
